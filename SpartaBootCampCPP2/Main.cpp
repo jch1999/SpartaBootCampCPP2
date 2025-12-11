@@ -1,7 +1,7 @@
+// copyright 2025
 #include <iostream>
-using namespace std;
+using namespace std;    // NOLINT
 
-int main()
-{
-	return 0;
+int main()  {
+    return 0;
 }
