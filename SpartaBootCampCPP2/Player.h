@@ -1,3 +1,4 @@
+// Copyright 2025 <SpartaClub>
 #pragma once
 #include <string>
 using namespace std;    // NOLINT
@@ -5,15 +6,15 @@ using namespace std;    // NOLINT
 class Monster;
 
 class Player {
-public:
-    Player(string nickname);
+ public:
+    explicit Player(string nickname);
     virtual ~Player();
 
     virtual void attack() = 0;
     virtual void attack(Monster* monster) = 0;
     void printPlayerStatus();
 
-    // getter ÇÔ¼ö
+    // getter í•¨ìˆ˜
     string getJobName();
     string getNickname();
     int getLevel();
@@ -24,7 +25,7 @@ public:
     int getAccuracy();
     int getSpeed();
 
-    // setter ÇÔ¼ö
+    // setter í•¨ìˆ˜
     void setNickname(string nickname);
     bool setHP(int HP);
     bool setMP(int MP);
@@ -33,7 +34,7 @@ public:
     void setAccuracy(int accuracy);
     void setSpeed(int speed);
 
-protected:
+ protected:
     string job_name;
     string nickname;
     int level;

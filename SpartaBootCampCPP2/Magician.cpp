@@ -1,23 +1,30 @@
+// Copyright 2025 <SpartaClub>
 #include "Magician.h"
 #include "Monster.h"
 #include <iostream>
+#include <string>
 using namespace std;    // NOLINT
 
-Magician::Magician():Player("Magician") {
-    cout << getNickname() << "ÀÇ °ø°Ý. .\n";
+Magician::Magician(string nickName):Player(nickName) {
 }
 
 void Magician::attack() {
+    cout << getNickname() << "ì˜ ê³µê²©. .\n";
 }
 
 void Magician::attack(Monster* monster) {
     int damage = getPower() - monster->getDefence();
-    if (damage <= 0) {
-        monster->setHP(monster->getHP() - 1);
-        cout << monster->getName() << "¿¡°Ô " << damage << "µ¥¹ÌÁö!!!\n";
+    if (damage <= 0) damage = 1;
 
-        if (monster->getHP() <= 0) {
-            cout << monster->getName() << " ´Â " << getNickname() << "¿¡ ÀÇÇØ ¿µ¿øÈ÷ Àáµé¾ú´Ù.\n";
-        }
+    monster->setHP(monster->getHP() - damage);
+    cout << monster->getName() << "ì—ê²Œ " << damage << "ë°ë¯¸ì§€!!!\n";
+
+    if (monster->getHP() <= 0) {
+        cout << monster->getName() << "ëŠ” "
+            << getNickname() << "ì˜ ê³„ì‚°ëŒ€ë¡œ ì˜ì›ížˆ ì¹¨ë¬µí–ˆë‹¤.\n";
+    } else {
+        cout << monster->getName() << "ì˜ ë‚¨ì€ HPëŠ” "
+            << monster->getHP() << "ìž…ë‹ˆë‹¤.\n";
+        cout << getNickname() << ": ì˜ˆìƒí–ˆë˜ ê²ƒë³´ë‹¤ íŠ¼íŠ¼í•˜êµ°.\n\n";
     }
 }

@@ -1,24 +1,31 @@
+// Copyright 2025 <SpartaClub>
 #include "Thief.h"
 #include "Monster.h"
 #include <iostream>
+#include <string>
 using namespace std;    // NOLINT
 
-Thief::Thief():Player("Thief") {
+Thief::Thief(string nickName):Player(nickName) {
 }
 
 void Thief::attack() {
-    cout << getNickname() << "ÀÇ °ø°Ý. Shadow Knife.\n";
+    cout << getNickname() << "ì´ ê³µê²©. Shadow Knife.\n";
 }
 
-void Thief::attack(Monster* monster)
-{
-    int damage = getPower() - monster->getDefence();
-    if (damage <= 0) {
-        monster->setHP(monster->getHP() - 1);
-        cout << monster->getName() << "¿¡°Ô " << damage << "µ¥¹ÌÁö!!!\n";
+void Thief::attack(Monster* monster) {
+    int damage = (getPower() - monster->getDefence()) / 5;
+    if (damage <= 0)damage = 1;
+    for (int i = 0; i < 5; i++) {
+        monster->setHP(monster->getHP() - damage);
+        cout << monster->getName() << "ì—ê²Œ " << damage << "ë°ë¯¸ì§€!!!\n";
 
         if (monster->getHP() <= 0) {
-            cout << monster->getName() << " ´Â " << getNickname() << "¿¡ ÀÇÇØ ¿µ¿øÈ÷ Àáµé¾ú´Ù.\n";
+            cout << monster->getName() << "ëŠ” "
+                << getNickname() << "ì— ì˜í•´ ì˜ì›ížˆ ìž ë“¤ì—ˆë‹¤.\n";
+        } else {
+            cout << monster->getName() << "ì˜ ë‚¨ì€ HPëŠ” "
+                << monster->getHP() << "ìž…ë‹ˆë‹¤.\n"
+                << getNickname() << ": ì¹«! ì–•ì•˜ë‚˜.\n\n";
         }
     }
 }

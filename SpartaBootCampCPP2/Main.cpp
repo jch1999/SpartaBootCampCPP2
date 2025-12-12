@@ -1,33 +1,40 @@
 // Copyright 2025 <SpartaClub>
 #include <iostream>
-#include "player.h"
-#include "warrior.h"
-#include "magician.h"
-#include "thief.h"
-#include "archer.h"
+#include <string>
+#include <Windows.h>
+#include "./player.h"
+#include "./warrior.h"
+#include "./magician.h"
+#include "./thief.h"
+#include "./archer.h"
+#include "./Monster.h"
 
 using namespace std;    // NOLINT
 
-// ¸ŞÀÎ ÇÔ¼ö
+// ë©”ì¸ í•¨ìˆ˜
 int main() {
-    string jobs[] = { "Àü»ç", "¸¶¹ı»ç", "µµÀû", "±Ã¼ö" };
+    string jobs[] = { "ì „ì‚¬", "ë§ˆë²•ì‚¬", "ë„ì ", "ê¶ìˆ˜" };
     int job_choice = 0;
     string nickname;
 
     Player* player = nullptr;
 
-    cout << "* ´Ğ³×ÀÓÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä: ";
+    string mobs[] = { "ê³ ë¶ˆë¦°", "ìŠ¬ë¼ì„", "ë ›ë§¨", "í˜ì–´ë¦¬" };
+    int mob_choice = 0;
+    Monster* monster = nullptr;
+
+    cout << "* ë‹‰ë„¤ì„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”: ";
     cin >> nickname;
 
-    cout << "<ÀüÁ÷ ½Ã½ºÅÛ>" << endl;
-    cout << nickname << "´Ô, È¯¿µÇÕ´Ï´Ù!" << endl;
-    cout << "* ¿øÇÏ½Ã´Â Á÷¾÷À» ¼±ÅÃÇØÁÖ¼¼¿ä." << endl;
+    cout << "<ì „ì§ ì‹œìŠ¤í…œ>" << endl;
+    cout << nickname << "ë‹˜, í™˜ì˜í•©ë‹ˆë‹¤!" << endl;
+    cout << "* ì›í•˜ì‹œëŠ” ì§ì—…ì„ ì„ íƒí•´ì£¼ì„¸ìš”." << endl;
 
     for (int i = 0; i < 4; i++) {
         cout << (i + 1) << ". " << jobs[i] << endl;
     }
 
-    cout << "¼±ÅÃ: ";
+    cout << "ì„ íƒ: ";
     cin >> job_choice;
 
     switch (job_choice) {
@@ -44,12 +51,35 @@ int main() {
         player = new Archer(nickname);
         break;
     default:
-        cout << "Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù." << endl;
+        cout << "ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤." << endl;
         return 1;
     }
 
-    player->attack();
-    player->printPlayerStatus();
+    while (true) {
+        cout << "* ìƒëŒ€í•˜ì‹¤ ëª¬ìŠ¤í„°ì„ ì„ íƒí•´ì£¼ì„¸ìš”." << endl;
+
+        for (int i = 0; i < 4; i++) {
+            cout << (i + 1) << ". " << mobs[i] << endl;
+        }
+        cout << "ì„ íƒ: ";
+        cin >> mob_choice;
+        if (mob_choice <= 4 && mob_choice >= 1) {
+            monster = new Monster(mobs[mob_choice - 1]);
+            break;
+        } else {
+            cout << "ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤.\n\n";
+        }
+    }
+
+    while (monster->getHP() > 0 && player->getHP() > 0) {
+        Sleep(300);
+        player->attack(monster);
+
+        Sleep(300);
+        if (monster->getHP() > 0)  {
+            monster->attack(player);
+        }
+    }
 
     delete player;
 
