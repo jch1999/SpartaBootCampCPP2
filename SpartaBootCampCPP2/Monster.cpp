@@ -1,55 +1,68 @@
+// Copyright 2025 <SpartaClub>
+#include <iostream>
+#include <string>
 #include "Monster.h"
-
-Monster::Monster(string name)
-{
+#include "Player.h"
+using namespace std;     //NOLINT
+Monster::Monster(string name) : name(name), HP(10),
+power(30), defence(10), speed(10) {
 }
 
-void Monster::attack(Player* player)
-{
+void Monster::attack(Player* player) {
+    int damage = getPower() - player->getDefence();
+
+    if (damage <= 0) damage = 1;
+
+    player->setHP(player->getHP() - damage);
+    cout << getName() << "의 공격! "
+        << player->getNickname() << "에게 " << damage << "데미지!!!\n";
+
+    if (player->getHP() <= 0) {
+        cout << player->getNickname() << "는 쓰러졌다\n\n";
+    } else {
+        cout << player->getNickname() << "의 남은 HP는 "
+            << player->getHP() << "입니다.\n";
+    }
 }
 
-string Monster::getName()
-{
-    return string();
+string Monster::getName() {
+    return name;
 }
 
-int Monster::getHP()
-{
-    return 0;
+int Monster::getHP() {
+    return HP;
 }
 
-int Monster::getPower()
-{
-    return 0;
+int Monster::getPower() {
+    return power;
 }
 
-int Monster::getDefence()
-{
-    return 0;
+int Monster::getDefence() {
+    return defence;
 }
 
-int Monster::getSpeed()
-{
-    return 0;
+int Monster::getSpeed() {
+    return speed;
 }
 
-void Monster::setName(string name)
-{
+void Monster::setName(string name) {
+    this->name = name;
 }
 
-bool Monster::setHP(int HP)
-{
-    return false;
+bool Monster::setHP(int HP) {
+    this->HP = HP;
+    if (HP <= 0) return false;
+    return true;
 }
 
-void Monster::setPower(int power)
-{
+void Monster::setPower(int power) {
+    this->power = power;
 }
 
-void Monster::setDefence(int defence)
-{
+void Monster::setDefence(int defence) {
+    this->defence = defence;
 }
 
-void Monster::setSpeed(int speed)
-{
+void Monster::setSpeed(int speed) {
+    this->speed = speed;
 }

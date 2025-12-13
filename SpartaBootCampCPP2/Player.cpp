@@ -1,110 +1,100 @@
+// Copyright 2025 <SpartaClub>
 #include "Player.h"
 #include <iostream>
-using namespace std;
+#include <string>
 
-Player::Player(string nickname):job_name(""),nickname(nickname), level(1), HP(50), MP(50)
-,power(10),defence(10),accuracy(10),speed(5)
-{
+using namespace std; //NOLINT
+
+Player::Player(string nickname) :job_name(""), nickname(nickname)
+, level(1), HP(50), MP(50)
+, power(10), defence(10), accuracy(10), speed(5) {
 }
 
-Player::~Player()
-{
+Player::~Player() {
 }
 
 void Player::printPlayerStatus() {
     cout << "------------------------------------" << endl;
-    cout << "* ÇöÀç ´É·ÂÄ¡" << endl;
-    cout << "´Ð³×ÀÓ: " << nickname << endl;
-    cout << "Á÷¾÷: " << job_name << endl;
+    cout << "* í˜„ìž¬ ëŠ¥ë ¥ì¹˜" << endl;
+    cout << "ë‹‰ë„¤ìž„: " << nickname << endl;
+    cout << "ì§ì—…: " << job_name << endl;
     cout << "Lv. " << level << endl;
     cout << "HP: " << HP << endl;
     cout << "MP: " << MP << endl;
-    cout << "°ø°Ý·Â: " << power << endl;
-    cout << "¹æ¾î·Â: " << defence << endl;
-    cout << "Á¤È®µµ: " << accuracy << endl;
-    cout << "¼Óµµ: " << speed << endl;
+    cout << "ê³µê²©ë ¥: " << power << endl;
+    cout << "ë°©ì–´ë ¥: " << defence << endl;
+    cout << "ì •í™•ë„: " << accuracy << endl;
+    cout << "ì†ë„: " << speed << endl;
     cout << "------------------------------------" << endl;
 }
 
-// getter ÇÔ¼ö
-string Player::getJobName()
-{
+// getter í•¨ìˆ˜
+string Player::getJobName() {
     return job_name;
 }
 
-string Player::getNickname()
-{
+string Player::getNickname() {
     return nickname;
 }
 
-int Player::getLevel()
-{
+int Player::getLevel() {
     return level;
 }
 
-int Player::getHP()
-{
+int Player::getHP() {
     return HP;
 }
 
-int Player::getMP()
-{
+int Player::getMP() {
     return MP;
 }
 
-int Player::getPower()
-{
+int Player::getPower() {
     return power;
 }
 
-int Player::getDefence()
-{
+int Player::getDefence() {
     return defence;
 }
 
-int Player::getAccuracy()
-{
+int Player::getAccuracy() {
     return accuracy;
 }
 
-int Player::getSpeed()
-{
+int Player::getSpeed() {
     return speed;
 }
 
 
-// setter ÇÔ¼ö
-void Player::setNickname(string nickname)
-{
+// setter í•¨ìˆ˜
+void Player::setNickname(string nickname) {
     this->nickname = nickname;
 }
 
-bool Player::setHP(int HP)
-{
+bool Player::setHP(int HP) {
     this->HP = HP;
+    if (HP <= 0) return false;
+    return true;
 }
 
-bool Player::setMP(int MP)
-{
+bool Player::setMP(int MP) {
     this->MP = MP;
+    if (MP <= 0) return false;
+    return true;
 }
 
-void Player::setPower(int power)
-{
+void Player::setPower(int power) {
     this->power = power;
 }
 
-void Player::setDefence(int defence)
-{
+void Player::setDefence(int defence) {
     this->defence = defence;
 }
 
-void Player::setAccuracy(int accuracy)
-{
+void Player::setAccuracy(int accuracy) {
     this->accuracy = accuracy;
 }
 
-void Player::setSpeed(int speed)
-{
+void Player::setSpeed(int speed) {
     this->speed = speed;
 }
