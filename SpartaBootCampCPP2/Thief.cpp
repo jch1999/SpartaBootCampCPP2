@@ -6,6 +6,12 @@
 using namespace std;    // NOLINT
 
 Thief::Thief(string nickName):Player(nickName) {
+    setHP(50);
+    setMP(60);
+    setPower(10);
+    setDefence(10);
+    setAccuracy(12);
+    setSpeed(8);
 }
 
 void Thief::attack() {

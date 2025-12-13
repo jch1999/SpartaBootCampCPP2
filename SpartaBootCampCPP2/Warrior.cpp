@@ -7,8 +7,12 @@
 using namespace std;    // NOLINT
 
 Warrior::Warrior(string nickName) :Player(nickName) {
-    power = 20;
-    defence = 40;
+    setHP(70);
+    setMP(40);
+    setPower(12);
+    setDefence(12);
+    setAccuracy(11);
+    setSpeed(5);
 }
 
 void Warrior::attack() {

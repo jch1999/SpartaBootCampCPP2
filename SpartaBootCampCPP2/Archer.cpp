@@ -6,6 +6,12 @@
 using namespace std;    // NOLINT
 
 Archer::Archer(string nickName) : Player(nickName) {
+    setHP(60);
+    setMP(50);
+    setPower(11);
+    setDefence(10);
+    setAccuracy(12);
+    setSpeed(12);
 }
 
 void Archer::attack() {

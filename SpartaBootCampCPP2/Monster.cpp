@@ -14,15 +14,14 @@ void Monster::attack(Player* player) {
     if (damage <= 0) damage = 1;
 
     player->setHP(player->getHP() - damage);
-    cout << getName() << "의 공격! Heavy Strike!\n"
+    cout << getName() << "의 공격! "
         << player->getNickname() << "에게 " << damage << "데미지!!!\n";
 
     if (player->getHP() <= 0) {
         cout << player->getNickname() << "는 쓰러졌다\n\n";
     } else {
         cout << player->getNickname() << "의 남은 HP는 "
-            << player->getHP() << "입니다.\n"
-            << getName() << ": 힘이 덜 들어갔군!\n\n";
+            << player->getHP() << "입니다.\n";
     }
 }
 

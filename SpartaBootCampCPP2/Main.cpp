@@ -72,13 +72,15 @@ int main() {
     }
 
     while (monster->getHP() > 0 && player->getHP() > 0) {
-        Sleep(300);
         player->attack(monster);
+        Sleep(1000);
 
-        Sleep(300);
         if (monster->getHP() > 0)  {
+            cout << "\n";
             monster->attack(player);
+            Sleep(1000);
         }
+        cout << "\n";
     }
 
     delete player;
